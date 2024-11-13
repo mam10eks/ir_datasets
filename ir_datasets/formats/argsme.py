@@ -359,6 +359,11 @@ class ArgsMeProcessedDoc(NamedTuple):
             sentences=sentences,
         )
 
+    def default_text(self):
+        """
+        premises + conclusion
+        """
+        return f"{self.premises_texts} {self.conclusion}"
 
 class ArgsMeDocs(BaseDocs):
     _source: Cache
