@@ -4755,6 +4755,12 @@
       "size_hint": 34742,
       "expected_md5": "a19ab9b515d848bf1eb1c1d9c3150397",
       "cache_path": "trec_rag_2025_queries.jsonl"
+    },
+    "dragun-2025-test-topics": {
+      "url": "https://trec-dragun.github.io/trec-2025-dragun-topics.jsonl",
+      "size_hint": 341321,
+      "expected_md5": "920b31e4bd0085a85e942691e2e38210",
+      "cache_path": "trec_2025_dragun_topics.jsonl"
     }
   },
 

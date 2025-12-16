@@ -33,6 +33,17 @@ class MsMarcoV21SegmentedDoc(NamedTuple):
         return f'{self.title} {self.headings} {self.segment}'
 
 
+class DragunQuery(NamedTuple):
+    query_id: str
+    title: str
+    docid: str
+    headings: str
+    body: str
+    url: str
+
+    def default_text(self):
+        return self.title
+
 def parse_msmarco_segment(line):
     data = json.loads(line)
     msmarco_document_id, segment_info = data['docid'].split('#')
@@ -73,6 +84,10 @@ def _init():
     subsets['trec-rag-2025'] = Dataset(
         collection,
         JsonlQueries(dlc['rag-2025-test-topics'], lang='en', mapping={"query_id": "id" , "text": "title"})
+    )
+    subsets['trec-dragun-2025'] = Dataset(
+        collection,
+        JsonlQueries(dlc['dragun-2025-test-topics'], lang='en', query_cls=DragunQuery, mapping={"query_id": "docid" , "docid": "docid", "body": "body", "headings": "headings", "title": "title", "url": "url"})
     )
 
     ir_datasets.registry.register(NAME, Dataset(collection, documentation('_')))
